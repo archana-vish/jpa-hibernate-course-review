@@ -75,5 +75,18 @@ public class CourseRepository {
 
     }
 
+    // check for createdTime and updatedTime
+    public void testTimestamps() {
+        Course course1 = new Course("Groovy");
+        entityManager.persist(course1);
+
+        Course course2 = findById(10002l);
+        course2.setName("This shoudl change updated time");
+        entityManager.persist(course2);
+
+        entityManager.flush();
+
+    }
+
 
 }

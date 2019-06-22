@@ -26,6 +26,7 @@ public class DemoApplication implements CommandLineRunner {
 		courseRepository.ifFoundUpdateElseSave(new Course("Microservices in 100 steps"));
 
 		courseRepository.playWithEntityManager();
+		courseRepository.testTimestamps();
 	}
 
 	public static void main(String[] args) {

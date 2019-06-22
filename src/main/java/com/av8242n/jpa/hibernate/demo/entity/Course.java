@@ -1,6 +1,10 @@
 package com.av8242n.jpa.hibernate.demo.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="Course")
@@ -12,6 +16,12 @@ public class Course {
 
     @Column(name="name",nullable = false)
     private String name;
+
+    @CreationTimestamp
+    private LocalDateTime createdDateTime;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedDateTime;
 
     public Course(String name) {
         this.name = name;
