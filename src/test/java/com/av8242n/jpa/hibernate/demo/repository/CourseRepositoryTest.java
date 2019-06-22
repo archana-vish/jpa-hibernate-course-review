@@ -60,4 +60,11 @@ public class CourseRepositoryTest {
 
     }
 
+    @Test
+    @DirtiesContext
+    public void playWithEntityManagerTest() {
+        repository.playWithEntityManager();
+
+    }
+
 }
