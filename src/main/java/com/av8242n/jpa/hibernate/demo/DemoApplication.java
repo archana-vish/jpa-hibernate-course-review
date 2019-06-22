@@ -23,7 +23,7 @@ public class DemoApplication implements CommandLineRunner {
 		Course course = courseRepository.findById(10001);
 		logger.info("Course returned is {} ", course);
 		//courseRepository.deleteById(10001);
-
+		courseRepository.ifFoundUpdateElseSave(new Course("Microservices in 100 steps"));
 	}
 
 	public static void main(String[] args) {

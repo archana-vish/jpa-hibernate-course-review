@@ -26,6 +26,15 @@ public class CourseRepository {
     }
 
     // save(Course course)
+    public Course ifFoundUpdateElseSave(Course course) {
+        if (course.getId() > 0l) {
+            entityManager.merge(course); // update
+        } else {
+            entityManager.persist(course); // save
+        }
+
+        return course;
+    }
 
 
 
