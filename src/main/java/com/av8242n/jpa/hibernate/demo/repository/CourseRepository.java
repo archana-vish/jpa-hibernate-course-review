@@ -88,5 +88,9 @@ public class CourseRepository {
 
     }
 
+    public void useNamedQuery() {
+
+    }
+
 
 }

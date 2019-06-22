@@ -54,4 +54,11 @@ public class JPQLTest {
         logger.info("Value is {} ", resultList);
 
     }
+
+    @Test
+    public void namedQuery_JPQL() {
+        TypedQuery<Course> query_gell_all_courses = entityManager.createNamedQuery("query_gell_all_courses", Course.class);
+        List<Course> resultList = query_gell_all_courses.getResultList();
+        logger.info("Results are {} ", resultList);
+    }
 }

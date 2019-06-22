@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name="Course")
+@NamedQuery(name="query_gell_all_courses", query="select c from Course c")
 public class Course {
 
     @Id
