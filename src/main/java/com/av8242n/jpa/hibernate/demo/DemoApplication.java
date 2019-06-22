@@ -24,6 +24,8 @@ public class DemoApplication implements CommandLineRunner {
 		logger.info("Course returned is {} ", course);
 		//courseRepository.deleteById(10001);
 		courseRepository.ifFoundUpdateElseSave(new Course("Microservices in 100 steps"));
+
+		courseRepository.playWithEntityManager();
 	}
 
 	public static void main(String[] args) {

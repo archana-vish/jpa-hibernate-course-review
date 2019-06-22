@@ -44,10 +44,21 @@ public class CourseRepository {
 
     public void playWithEntityManager() {
         logger.info("play with entity manager");
-        Course course = new Course("Guice in 100 steps");
-        entityManager.persist(course);
-        course.setName("Guice2");
+        Course course1 = new Course("Guice in 100 steps");
+        entityManager.persist(course1);
+        entityManager.flush();
+
+        course1.setName("Guice2");
+        entityManager.flush();
         // This would make the entity manager update the course as well as it keeps track fo the transaction
+
+        Course course2 = new Course("React in 100 steps");
+        entityManager.persist(course2);
+        entityManager.flush();
+
+        entityManager.detach(course2); // This stops entity manager from tracking the transaction for this particular entity
+        // Use entityManager.clear() to stop tracking for all events
+        course2.setName("REact2");
 
     }
 
