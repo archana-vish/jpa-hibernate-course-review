@@ -7,8 +7,11 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@NamedQueries(value={
+        @NamedQuery(name="query_gell_all_courses", query="select c from Course c"),
+        @NamedQuery(name="query_gell_all_courses_like", query="select c from Course c where name like '100%'")
+})
 @Table(name="Course")
-@NamedQuery(name="query_gell_all_courses", query="select c from Course c")
 public class Course {
 
     @Id

@@ -31,7 +31,7 @@ public class JPQLTest {
 
     @Test
     public void jpql_basic() {
-        Query select_c_from_course_c = entityManager.createQuery("select c from Course c");
+        Query select_c_from_course_c = entityManager.createQuery("select c from course c");
         List resultList = select_c_from_course_c.getResultList();
         logger.info("Value is {} ", resultList);
 
@@ -60,5 +60,11 @@ public class JPQLTest {
         TypedQuery<Course> query_gell_all_courses = entityManager.createNamedQuery("query_gell_all_courses", Course.class);
         List<Course> resultList = query_gell_all_courses.getResultList();
         logger.info("Results are {} ", resultList);
+
+        TypedQuery<Course> query_get_all_like_100 = entityManager.createNamedQuery("query_gell_all_courses_like", Course.class);
+        List<Course> resultSet2 = query_get_all_like_100.getResultList();
+        logger.info("like 100 {}", resultSet2);
+
+
     }
 }
