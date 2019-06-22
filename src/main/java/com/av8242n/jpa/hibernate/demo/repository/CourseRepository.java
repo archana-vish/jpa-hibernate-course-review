@@ -5,8 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 @Repository
+@Transactional
 public class CourseRepository {
 
     @PersistenceContext
@@ -17,8 +19,14 @@ public class CourseRepository {
         return entityManager.find(Course.class, id);
     }
 
-    // save(Course course)
     // deleteById(long id)
+    public void deleteById(long id) {
+       Course course =  entityManager.find(Course.class, id);
+       entityManager.remove(course);
+    }
+
+    // save(Course course)
+
 
 
 }
