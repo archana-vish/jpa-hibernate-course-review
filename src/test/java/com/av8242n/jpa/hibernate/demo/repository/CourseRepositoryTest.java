@@ -67,4 +67,10 @@ public class CourseRepositoryTest {
 
     }
 
+    @Test
+    @DirtiesContext
+    public void testNullable() {
+        repository.testNullableColumn();
+    }
+
 }

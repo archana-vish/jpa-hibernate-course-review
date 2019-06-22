@@ -10,7 +10,7 @@ public class Course {
     @GeneratedValue
     private long id;
 
-    @Column(name="name")
+    @Column(name="name",nullable = false)
     private String name;
 
     public Course(String name) {

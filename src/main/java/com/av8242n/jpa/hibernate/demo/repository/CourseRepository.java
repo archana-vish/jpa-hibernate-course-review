@@ -61,5 +61,19 @@ public class CourseRepository {
     }
 
 
+    // check nullable columns
+    public void testNullableColumn() {
+        logger.info("test nullable column");
+        Course course1 = new Course("Guice in 100 steps");
+        entityManager.persist(course1);
+
+
+        course1.setName(null);
+
+        entityManager.flush();
+
+
+    }
+
 
 }
