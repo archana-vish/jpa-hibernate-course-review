@@ -38,5 +38,26 @@ public class CourseRepositoryTest {
         assertNull(repository.findById(10002L));
     }
 
+    @Test
+    @DirtiesContext // Reset data
+    public void saveACourse() {
+        Course course = new Course("JUnit Testing");
+        repository.ifFoundUpdateElseSave(course);
+        assertEquals(2, course.getId());
+    }
+
+    @Test
+    @DirtiesContext // Reset data
+    public void updateACourse() {
+        Course course = repository.findById(10001L);
+        assertEquals("JPA in 100 steps", course.getName());
+
+        // update this course
+        course.setName("JPA and Hibernate in 100 Steps");
+        repository.ifFoundUpdateElseSave(course);
+
+        assertEquals(10001L, course.getId());
+
+    }
 
 }
