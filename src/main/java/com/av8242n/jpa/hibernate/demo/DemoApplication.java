@@ -22,7 +22,7 @@ public class DemoApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Course course = courseRepository.findById(10001);
 		logger.info("Course returned is {} ", course);
-		courseRepository.deleteById(10001);
+		//courseRepository.deleteById(10001);
 
 	}
 
