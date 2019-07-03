@@ -13,6 +13,9 @@ public class Student {
     @Column(nullable = false)
     private String name;
 
+    @OneToOne
+    private Passport passport;
+
     public Student() {}
 
     public Student(String name) {
@@ -33,6 +36,7 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
+        //this.passport = passport;
     }
 
     @Override
