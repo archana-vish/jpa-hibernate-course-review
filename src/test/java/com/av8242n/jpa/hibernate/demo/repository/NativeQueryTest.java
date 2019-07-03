@@ -32,6 +32,7 @@ public class NativeQueryTest {
         query.setParameter("id", 10001l);
         List<Course> resultList = query.getResultList();
         logger.info("select * from course -> {} ", resultList);
+
     }
 
     @Test
