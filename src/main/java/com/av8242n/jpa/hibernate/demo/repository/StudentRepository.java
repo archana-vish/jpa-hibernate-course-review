@@ -100,4 +100,25 @@ public class StudentRepository {
         entityManager.flush();
 
     }
+
+    public void operationToUnderstandPersistence() {
+        // Retrieve a student
+        Student student = entityManager.find(Student.class, 20001l);
+        // Persistence context if persistence context (pc) -> (student)
+
+        // Retrieve a passport
+        Passport passport = student.getPassport();
+        // Transactional -> pc (student, passport)
+
+        // Update Passport
+        passport.setNumber("E122222");
+        // Transactional -> pc (student, passport++)
+
+        // Update student
+        student.setName("Updated name");
+        // Transactional -> pc (student++, passport)
+
+
+       // For this method since transaction is provided at the repo level this will pass when tested
+    }
 }
