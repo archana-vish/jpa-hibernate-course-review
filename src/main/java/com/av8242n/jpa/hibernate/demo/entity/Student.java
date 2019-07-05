@@ -1,5 +1,7 @@
 package com.av8242n.jpa.hibernate.demo.entity;
 
+import org.hibernate.annotations.Fetch;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,7 +15,7 @@ public class Student {
     @Column(nullable = false)
     private String name;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Passport passport;
 
     public Student() {}
