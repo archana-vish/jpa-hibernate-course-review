@@ -83,4 +83,17 @@ public class StudentRepositoryTest {
 
 
 
+    @Test
+    @Transactional // This is to allow the transaction for the entire test otherwise due to lazy init the passport won't be retrieved
+    public void retrievePassportAssociatedStudent() {
+        logger.info("Test is running...");
+        Passport passport = em.find(Passport.class, 40001l);
+        logger.info("passport -> {} ", passport);
+        logger.info("student details -> {}", passport.getStudent());
+        assertEquals(20001l, passport.getStudent().getId());
+    }
+
+
+
+
 }
