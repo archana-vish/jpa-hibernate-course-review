@@ -2,6 +2,13 @@ package com.av8242n.jpa.hibernate.demo.entity;
 
 import javax.persistence.*;
 
+
+//Many reviews for one course
+// Therefore, take the one side - that is the review (don't get confused here!)
+// Add the mapping here!
+
+// So this is the owning side!
+
 @Entity
 @Table(name="Review")
 public class Review {
@@ -15,6 +22,9 @@ public class Review {
 
     @Column
     private String rating;
+
+    @ManyToOne //Read many courses can have 0..n reviews
+    private Course course;
 
     public Review() {}
 
@@ -41,6 +51,14 @@ public class Review {
 
     public void setRating(String rating) {
         this.rating = rating;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     @Override
