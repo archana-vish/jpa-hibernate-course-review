@@ -1,7 +1,6 @@
 package com.av8242n.jpa.hibernate.demo;
 
-import com.av8242n.jpa.hibernate.demo.entity.Course;
-import com.av8242n.jpa.hibernate.demo.entity.Student;
+import com.av8242n.jpa.hibernate.demo.entity.Review;
 import com.av8242n.jpa.hibernate.demo.repository.CourseRepository;
 import com.av8242n.jpa.hibernate.demo.repository.StudentRepository;
 import org.slf4j.Logger;
@@ -10,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 @SpringBootApplication
@@ -42,8 +44,12 @@ public class DemoApplication implements CommandLineRunner {
 
 
 		/** COURSE AND REVIEWS **/
-		courseRepository.addReviewsForCourse();
+		courseRepository.addHardcodedReviewsForCourse();
 
+		Review review1 = new Review("5","Greate");
+		Review review2 = new Review("5","Super");
+		List<Review> reviews = Arrays.asList(review1, review2);
+		courseRepository.addReviewsForCourseGeneric(10003l, reviews);
 	}
 
 	public static void main(String[] args) {
