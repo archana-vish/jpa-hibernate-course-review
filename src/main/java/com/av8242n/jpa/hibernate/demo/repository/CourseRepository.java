@@ -1,6 +1,7 @@
 package com.av8242n.jpa.hibernate.demo.repository;
 
 import com.av8242n.jpa.hibernate.demo.entity.Course;
+import com.av8242n.jpa.hibernate.demo.entity.Review;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -88,7 +89,22 @@ public class CourseRepository {
 
     }
 
-    public void useNamedQuery() {
+    public void addReviewsForCourse() {
+        Course course = findById(10003l);
+        logger.info("Review for this course {} ", course.getReviews());
+        // Add another review now
+        Review review1 = new Review("5", "Great hands on stuff");
+        Review review2 = new Review("5", "Super");
+        course.addReview(review1);
+        course.addReview(review2);
+
+        // Review is the owning side. So set the course id
+        review1.setCourse(course);
+        review2.setCourse(course);
+
+        // save it to the database
+        entityManager.persist(review1);
+        entityManager.persist(review2);
 
     }
 

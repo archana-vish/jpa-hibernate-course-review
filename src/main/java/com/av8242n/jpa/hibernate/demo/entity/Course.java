@@ -48,7 +48,7 @@ public class Course {
         return id;
     }
 
-    @OneToMany(mappedBy="course")
+    @OneToMany(mappedBy="course", fetch = FetchType.LAZY)
     private List<Review> reviews = new ArrayList<>();
 
     public List<Review> getReviews() {

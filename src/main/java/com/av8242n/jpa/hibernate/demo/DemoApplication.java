@@ -39,6 +39,11 @@ public class DemoApplication implements CommandLineRunner {
 
 		// Save a student with passport
 		studentRepository.saveStudentWithPassport();
+
+
+		/** COURSE AND REVIEWS **/
+		courseRepository.addReviewsForCourse();
+
 	}
 
 	public static void main(String[] args) {
