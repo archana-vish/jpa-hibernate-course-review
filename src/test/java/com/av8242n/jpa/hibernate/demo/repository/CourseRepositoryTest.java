@@ -3,6 +3,7 @@ package com.av8242n.jpa.hibernate.demo.repository;
 import com.av8242n.jpa.hibernate.demo.DemoApplication;
 import com.av8242n.jpa.hibernate.demo.entity.Course;
 import com.av8242n.jpa.hibernate.demo.entity.Review;
+import com.av8242n.jpa.hibernate.demo.entity.Student;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -100,4 +101,13 @@ public class CourseRepositoryTest {
 
     }
 
+    @Test
+    @Transactional // This is to allow the transaction for the entire test otherwise due to lazy init the passport won't be retrieved
+    public void retrieveStudentAndCourse() {
+        Course course = repository.findById(10001l);
+        logger.info("Course {}", course);
+        List<Student> students = course.getStudents();
+        logger.info("Courses {}", students);
+
+    }
 }

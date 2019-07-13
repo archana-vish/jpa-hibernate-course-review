@@ -1,6 +1,7 @@
 package com.av8242n.jpa.hibernate.demo.repository;
 
 import com.av8242n.jpa.hibernate.demo.DemoApplication;
+import com.av8242n.jpa.hibernate.demo.entity.Course;
 import com.av8242n.jpa.hibernate.demo.entity.Passport;
 import com.av8242n.jpa.hibernate.demo.entity.Student;
 import org.junit.Test;
@@ -13,6 +14,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -95,5 +98,14 @@ public class StudentRepositoryTest {
 
 
 
+    @Test
+    @Transactional // This is to allow the transaction for the entire test otherwise due to lazy init the passport won't be retrieved
+    public void retrieveStudentAndCourse() {
+        Student student = repository.findById(20001l);
+        logger.info("Student {}", student);
+        List<Course> courses = student.getCourses();
+        logger.info("Courses {}", courses);
+
+    }
 
 }
