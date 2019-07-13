@@ -1,6 +1,8 @@
 package com.av8242n.jpa.hibernate.demo;
 
+import com.av8242n.jpa.hibernate.demo.entity.Course;
 import com.av8242n.jpa.hibernate.demo.entity.Review;
+import com.av8242n.jpa.hibernate.demo.entity.Student;
 import com.av8242n.jpa.hibernate.demo.repository.CourseRepository;
 import com.av8242n.jpa.hibernate.demo.repository.StudentRepository;
 import org.slf4j.Logger;
@@ -50,6 +52,11 @@ public class DemoApplication implements CommandLineRunner {
 //		Review review2 = new Review("5","Super");
 //		List<Review> reviews = Arrays.asList(review1, review2);
 //		courseRepository.addReviewsForCourseGeneric(10003l, reviews);
+
+
+		/** STUDENT AND COURSE **/
+		studentRepository.insertStudentAndCourseHardCoded();
+		studentRepository.insertStudentAndCourseGeneric(new Student("Jack"), new Course("Guice"));
 	}
 
 	public static void main(String[] args) {

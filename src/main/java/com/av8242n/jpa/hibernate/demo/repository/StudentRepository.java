@@ -1,5 +1,6 @@
 package com.av8242n.jpa.hibernate.demo.repository;
 
+import com.av8242n.jpa.hibernate.demo.entity.Course;
 import com.av8242n.jpa.hibernate.demo.entity.Passport;
 import com.av8242n.jpa.hibernate.demo.entity.Student;
 import com.av8242n.jpa.hibernate.demo.entity.Student;
@@ -120,6 +121,26 @@ public class StudentRepository {
 
 
        // For this method since transaction is provided at the repo level this will pass when tested
+    }
+
+
+    // Create a course and a student
+    public void insertStudentAndCourseHardCoded() {
+        Student student = new Student("Sven");
+        Course course = new Course("Guice");
+        entityManager.persist(student);
+        entityManager.persist(course);
+        student.addCourse(course);
+        course.addStudent(student);
+        entityManager.persist(student);
+    }
+
+    // Create a course and a student
+    public void insertStudentAndCourseGeneric(Student student, Course course) {
+        student.addCourse(course);
+        course.addStudent(student);
+        entityManager.persist(student);
+        entityManager.persist(course);
     }
 
 }
