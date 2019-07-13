@@ -40,16 +40,16 @@ public class DemoApplication implements CommandLineRunner {
 		/** FOR STUDENT **/
 
 		// Save a student with passport
-		studentRepository.saveStudentWithPassport();
+//		studentRepository.saveStudentWithPassport();
 
 
 		/** COURSE AND REVIEWS **/
-		courseRepository.addHardcodedReviewsForCourse();
-
-		Review review1 = new Review("5","Greate");
-		Review review2 = new Review("5","Super");
-		List<Review> reviews = Arrays.asList(review1, review2);
-		courseRepository.addReviewsForCourseGeneric(10003l, reviews);
+//		courseRepository.addHardcodedReviewsForCourse();
+//
+//		Review review1 = new Review("5","Greate");
+//		Review review2 = new Review("5","Super");
+//		List<Review> reviews = Arrays.asList(review1, review2);
+//		courseRepository.addReviewsForCourseGeneric(10003l, reviews);
 	}
 
 	public static void main(String[] args) {

@@ -51,6 +51,9 @@ public class Course {
     @OneToMany(mappedBy="course", fetch = FetchType.LAZY)
     private List<Review> reviews = new ArrayList<>();
 
+    @ManyToMany
+    private List<Student> students = new ArrayList<>();
+
     public List<Review> getReviews() {
         return reviews;
     }
@@ -65,6 +68,14 @@ public class Course {
     }
 
 
+    public void addStudent(Student student) { this.students.add(student); }
+
+    public void removeStudent(Student student) { this.students.remove(student);}
+
+
+    public List<Student> getStudents() {
+        return students;
+    }
 
     @Override
     public String toString() {

@@ -1,0 +1,4 @@
+STUDENT <-> PASSPORT         :: OneToOne     :: Eager Fetch :: Anyone can be the owning side
+COURSE   -> REVIEW           :: OneToMany    :: Lazy Fetch  :: 'Many' side is the owner; so Course is mapped to Reviews
+REVIEW   -> COURSE           :: ManyToOne    :: Eager Fetch :: Review is the owning side
+COURSE   -> STUDENT          :: ManyToMany   :: Lazy Fetch  :: Anyone can be the owner
