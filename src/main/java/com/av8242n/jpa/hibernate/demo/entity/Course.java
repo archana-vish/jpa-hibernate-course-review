@@ -51,7 +51,7 @@ public class Course {
     @OneToMany(mappedBy="course", fetch = FetchType.LAZY)
     private List<Review> reviews = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(mappedBy="courses")
     private List<Student> students = new ArrayList<>();
 
     public List<Review> getReviews() {
