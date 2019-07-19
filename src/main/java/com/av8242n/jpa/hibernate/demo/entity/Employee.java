@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // Default Strategy
-@DiscriminatorColumn(name = "EmployeeType")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS) // Default Strategy is single_table
 public abstract class Employee {
 
     @Id
