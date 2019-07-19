@@ -63,10 +63,10 @@ public class DemoApplication implements CommandLineRunner {
 
 
 		/** EMPLOYEE **/
-		employeeRepository.insert(new FullTimeEmployee("Jack", new BigDecimal(10_000)));
-		employeeRepository.insert(new PartTimeEmployee("Jill", new BigDecimal(50)));
-		logger.info("All FullTime Employees", employeeRepository.retrieveFullTimeEmployees());
-		logger.info("All PartTime Employees", employeeRepository.retrievePartTimeEmployees());
+//		employeeRepository.insert(new FullTimeEmployee("Jack", new BigDecimal(10_000)));
+//		employeeRepository.insert(new PartTimeEmployee("Jill", new BigDecimal(50)));
+//		logger.info("All FullTime Employees", employeeRepository.retrieveFullTimeEmployees());
+//		logger.info("All PartTime Employees", employeeRepository.retrievePartTimeEmployees());
 	}
 
 	public static void main(String[] args) {

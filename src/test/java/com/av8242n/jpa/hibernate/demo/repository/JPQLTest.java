@@ -2,6 +2,7 @@ package com.av8242n.jpa.hibernate.demo.repository;
 
 import com.av8242n.jpa.hibernate.demo.DemoApplication;
 import com.av8242n.jpa.hibernate.demo.entity.Course;
+import com.av8242n.jpa.hibernate.demo.entity.Student;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -65,6 +66,42 @@ public class JPQLTest {
         List<Course> resultSet2 = query_get_all_like_100.getResultList();
         logger.info("like 100 {}", resultSet2);
 
+
+    }
+
+    @Test
+    public void jpql_courses_without_students() {
+        TypedQuery<Course> select_c_from_course_c =
+                entityManager.createQuery("select c from Course c where  c.students is empty", Course.class);
+        List<Course> resultList = select_c_from_course_c.getResultList();
+        logger.info("Results {} ", resultList);
+
+    }
+
+    @Test
+    public void jpql_courses_more_than_two_students() {
+        TypedQuery<Course> select_c_from_course_c =
+                entityManager.createQuery("select c from Course c where  size(c.students) >= 2", Course.class);
+        List<Course> resultList = select_c_from_course_c.getResultList();
+        logger.info("Results {} ", resultList);
+
+    }
+
+    @Test
+    public void jpql_courses_order_by_students() {
+        TypedQuery<Course> select_c_from_course_c =
+                entityManager.createQuery("select c from Course c order by size(c.students) desc", Course.class);
+        List<Course> resultList = select_c_from_course_c.getResultList();
+        logger.info("Results {} ", resultList);
+
+    }
+
+    @Test
+    public void jpql_courses_like() {
+        TypedQuery<Student> select_c_from_course_c =
+                entityManager.createQuery("select s from Student s where s.passport.number like '%E4%'", Student.class);
+        List<Student> resultList = select_c_from_course_c.getResultList();
+        logger.info("Results {} ", resultList);
 
     }
 }
