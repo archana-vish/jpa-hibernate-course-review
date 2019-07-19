@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS) // Default Strategy is single_table
+@Inheritance(strategy = InheritanceType.JOINED) // Default Strategy is single_table
 public abstract class Employee {
 
     @Id
