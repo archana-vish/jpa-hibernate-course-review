@@ -104,4 +104,40 @@ public class JPQLTest {
         logger.info("Results {} ", resultList);
 
     }
+
+    // JOIN -> select c,s from Course c join c.students s
+    // LEFT JOIN -> select c, s from Course c left join c.students s (even courses that do not have students)
+    // CROSS JOIN -> select c, s from Course c, Student s (cartesian product)
+    @Test
+    public void testJoin() {
+        Query query =
+                entityManager.createQuery("select c,s from Course c join c.students s");
+        List<Object[]> resultList = query.getResultList();
+        logger.info("Result size{} ", resultList.size());
+        for (Object[] result : resultList) {
+           logger.info("Course {} Student {} ", result[0], result[1]);
+        }
+    }
+
+    @Test
+    public void testLeftJoin() {
+        Query query =
+                entityManager.createQuery("select c,s from Course c left join c.students s");
+        List<Object[]> resultList = query.getResultList();
+        logger.info("Result size{} ", resultList.size());
+        for (Object[] result : resultList) {
+            logger.info("Course {} Student {} ", result[0], result[1]);
+        }
+    }
+
+    @Test
+    public void crossJoin() {
+        Query query =
+                entityManager.createQuery("select c,s from Course c , Student s");
+        List<Object[]> resultList = query.getResultList();
+        logger.info("Result size{} ", resultList.size());
+        for (Object[] result : resultList) {
+            logger.info("Course {} Student {} ", result[0], result[1]);
+        }
+    }
 }
