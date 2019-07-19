@@ -4,8 +4,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED) // Default Strategy is single_table
+@MappedSuperclass
+//@Entity
+//@Inheritance(strategy = InheritanceType.JOINED) // Default Strategy is single_table
 public abstract class Employee {
 
     @Id
