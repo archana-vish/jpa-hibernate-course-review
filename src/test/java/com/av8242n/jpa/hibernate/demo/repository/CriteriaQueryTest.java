@@ -14,10 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -96,11 +93,11 @@ public class CriteriaQueryTest {
         Root<Course> courseRoot = cq.from(Course.class);
 
         // 3. Define Predicates etc using Criteria Builder
-        Predicate like_100_steps = cb.isEmpty(courseRoot.get("students"));
+        Predicate empty_students = cb.isEmpty(courseRoot.get("students"));
 
 
         // 4. Add Predicates etc to the Criteria Query
-        cq.where(like_100_steps);
+        cq.where(empty_students);
 
         // 5. Build the TypedQuery using entity manager and criteria query
         TypedQuery<Course> select_c_from_course_c =
@@ -110,4 +107,30 @@ public class CriteriaQueryTest {
 
     }
 
+    @Test
+    public void courses_join_students() {
+
+        // select c from course c join c.students s
+
+        // 1. Use Criteria Builder to create a Criteria Query returning the expected result object
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Course> cq = cb.createQuery(Course.class);
+
+
+        // 2. Define roots for tables which are involved in the query
+        Root<Course> courseRoot = cq.from(Course.class);
+
+        // 3. Define Predicates etc using Criteria Builder
+        Join<Object, Object> students = courseRoot.join("students", JoinType.LEFT);
+
+
+        // 4. Add Predicates etc to the Criteria Query
+
+        // 5. Build the TypedQuery using entity manager and criteria query
+        TypedQuery<Course> select_c_from_course_c =
+                entityManager.createQuery(cq.select(courseRoot));
+        List resultList = select_c_from_course_c.getResultList();
+        logger.info("Value is {} ", resultList);
+
+    }
 }
