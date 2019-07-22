@@ -40,6 +40,19 @@ public class CourseRepositoryTest {
     }
 
     @Test
+    @Transactional // Because of this the first level cache kicks in..
+    public void firstLevelCache() {
+        Course course = repository.findById(10001L);
+        logger.info("First course retrieved {} ", course);
+        Course course1 = repository.findById(10001L);
+        logger.info("First course again {} ", course1);
+
+        assertEquals("JPA in 100 steps", course.getName());
+        assertEquals("JPA in 100 steps", course1.getName());
+
+    }
+
+    @Test
     @DirtiesContext // Reset data
     public void deleteById() {
         logger.info("Delete by id");
