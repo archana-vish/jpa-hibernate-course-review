@@ -14,6 +14,7 @@ import java.util.List;
         @NamedQuery(name="query_gell_all_courses_like", query="select c from Course c where name like '100%'")
 })
 @Table(name="Course")
+@Cacheable
 public class Course {
 
     @Id
