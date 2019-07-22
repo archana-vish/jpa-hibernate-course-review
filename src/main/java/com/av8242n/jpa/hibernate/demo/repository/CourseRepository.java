@@ -2,6 +2,7 @@ package com.av8242n.jpa.hibernate.demo.repository;
 
 import com.av8242n.jpa.hibernate.demo.entity.Course;
 import com.av8242n.jpa.hibernate.demo.entity.Review;
+import com.av8242n.jpa.hibernate.demo.entity.ReviewRating;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -94,8 +95,8 @@ public class CourseRepository {
         Course course = findById(10003l);
         logger.info("Review for this course {} ", course.getReviews());
         // Add another review now
-        Review review1 = new Review("5", "Great hands on stuff");
-        Review review2 = new Review("5", "Super");
+        Review review1 = new Review(ReviewRating.FIVE, "Great hands on stuff");
+        Review review2 = new Review(ReviewRating.FIVE, "Super");
         course.addReview(review1);
         course.addReview(review2);
 

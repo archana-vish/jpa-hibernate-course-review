@@ -20,15 +20,15 @@ public class Review {
     @Column
     private String description;
 
-    @Column
-    private String rating;
+    @Enumerated(EnumType.STRING) // ORDINALS ARE DEFAULT AND THEY ARE THE POSITIONS
+    private ReviewRating rating;
 
     @ManyToOne //Read many courses can have 0..n reviews
     private Course course;
 
     public Review() {}
 
-    public Review(String rating, String description) {
+    public Review(ReviewRating rating, String description) {
         this.description = description;
         this.rating = rating;
     }
@@ -41,7 +41,7 @@ public class Review {
         return description;
     }
 
-    public String getRating() {
+    public ReviewRating getRating() {
         return rating;
     }
 
@@ -49,7 +49,7 @@ public class Review {
         this.description = description;
     }
 
-    public void setRating(String rating) {
+    public void setRating(ReviewRating rating) {
         this.rating = rating;
     }
 
