@@ -1,7 +1,11 @@
 package com.av8242n.jpa.hibernate.demo.entity;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,7 +19,11 @@ import java.util.List;
 })
 @Table(name="Course")
 @Cacheable
+@SQLDelete(sql="update course set is_deleted = true where id = ?")
+@Where(clause="is_deleted=false")
 public class Course {
+
+    private static Logger logger = LoggerFactory.getLogger(Course.class);
 
     @Id
     @GeneratedValue
@@ -29,6 +37,14 @@ public class Course {
 
     @UpdateTimestamp
     private LocalDateTime updatedDateTime;
+
+    private boolean isDeleted;
+
+    @PreRemove
+    private void preRemove() {
+        logger.info("Setting isDeleted to true");
+        this.isDeleted = true;
+    }
 
     public Course(String name) {
         this.name = name;
