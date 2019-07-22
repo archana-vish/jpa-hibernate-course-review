@@ -17,6 +17,9 @@ public class Student {
     @Column(nullable = false)
     private String name;
 
+    @Embedded
+    private Address address;
+
     @OneToOne(fetch = FetchType.LAZY)
     private Passport passport;
 
@@ -28,6 +31,8 @@ public class Student {
     // joinColumn - STUDENT_ID
     // inverseJoinColumn = COURSE_ID
     private List<Course> courses = new ArrayList<>();
+
+
 
     public Student() {}
 
@@ -77,5 +82,13 @@ public class Student {
         return "Student{" +
                 "name='" + name + '\'' +
                 '}';
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

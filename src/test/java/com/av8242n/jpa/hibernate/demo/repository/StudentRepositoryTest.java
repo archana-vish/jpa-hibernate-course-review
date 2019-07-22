@@ -1,6 +1,7 @@
 package com.av8242n.jpa.hibernate.demo.repository;
 
 import com.av8242n.jpa.hibernate.demo.DemoApplication;
+import com.av8242n.jpa.hibernate.demo.entity.Address;
 import com.av8242n.jpa.hibernate.demo.entity.Course;
 import com.av8242n.jpa.hibernate.demo.entity.Passport;
 import com.av8242n.jpa.hibernate.demo.entity.Student;
@@ -47,6 +48,22 @@ public class StudentRepositoryTest {
         assertEquals("E400001", student.getPassport().getNumber());
     }
 
+
+    @Test
+    @Transactional // This is to allow the transaction for the entire test otherwise due to lazy init the passport won't be retrieved
+    public void setAddressDetails() {
+        logger.info("Test is running...");
+        Student student = repository.findById(20001L);
+        student.setAddress(new Address("101", "Ice Palace", "Arendale"));
+        em.flush();
+
+//        Student student1 = em.find(Student.class, 20001l);
+//        logger.info("student -> {} ", student1);
+//        logger.info("passport details -> {}", student1.getPassport());
+//
+//
+//        assertEquals("E400001", student.getPassport().getNumber());
+    }
 
     @Test
     @Transactional
